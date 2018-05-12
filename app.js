@@ -10,12 +10,12 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(morgan('dev'));
+app.use(morgan('dev')); // Helps us know what's going on in our app error-wise. Returns errors in terminal
 
 app.use('/students', students);
 app.use('/tests', tests);
 
-app.use((err, req, res, next) => {
+app.use((err, req, res, next) => { // Error-handler has 4 argumnets. Absolute last error handler.
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
